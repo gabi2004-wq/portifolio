@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfólio profissional de Gabriel Oliveira Dalmo">
+<title>Gabriel Oliveira Dalmo | Portfólio</title>
+
+<style>
+:root {
+  --primary: #17365D;
+  --background: #F4F7FB;
+  --text: #182536;
+  --muted: #617187;
+  --border: #DCE4EE;
+  --white: #FFFFFF;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+.wrap { width: min(1120px, calc(100% - 40px)); margin: auto; }
+a { color: inherit; text-decoration: none; }
+
+.topbar {
+  background: var(--primary);
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 0;
+}
+.brand { font-weight: bold; }
+.navlinks { display: flex; gap: 20px; font-size: 13px; }
+
+.hero {
+  background: var(--primary);
+  color: white;
+  padding: 75px 0;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 220px;
+  align-items: center;
+  gap: 40px;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+  color: #BBD5EF;
+  font-weight: bold;
+}
+.hero h1 {
+  font-size: clamp(38px, 6vw, 66px);
+  line-height: 1.05;
+  margin: 15px 0;
+}
+.hero p { max-width: 680px; color: #E1EAF4; }
+.portrait {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid white;
+}
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+.btn {
+  display: inline-block;
+  padding: 11px 17px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: bold;
+  border: 1px solid white;
+}
+.btn.primary { background: white; color: var(--primary); }
+.btn.ghost { color: white; }
+.quick { margin-top: 25px; font-size: 12px; color: #D6E3F1; }
+
+main { padding: 45px 0 70px; }
+.section { margin-bottom: 48px; scroll-margin-top: 85px; }
+.kicker {
+  color: #2E6DA4;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+h2 { font-size: 27px; margin: 5px 0 15px; }
+.intro { color: var(--muted); font-size: 14px; max-width: 700px; }
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.panel, .project-card, .skill {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 22px;
+  box-shadow: 0 10px 30px rgba(22,48,78,.06);
+}
+.panel h3 { font-size: 15px; margin-top: 0; }
+.panel p { font-size: 13px; color: var(--muted); }
+.timeline-item {
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.timeline-item:last-child { border: 0; margin: 0; padding: 0; }
+.timeline-item strong { display: block; font-size: 14px; }
+.timeline-item small { color: var(--muted); }
+
+.project-toolbar { display: flex; gap: 10px; margin-bottom: 18px; }
+.search { flex: 1; }
+.search input, .filter select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  background: white;
+  font-size: 13px;
+}
+.filter { min-width: 170px; }
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+.project-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 190px;
+}
+.project-card h3 { font-size: 16px; margin: 8px 0; }
+.project-card p { font-size: 12px; color: var(--muted); }
+.project-card a { color: #2E6DA4; font-size: 12px; font-weight: bold; margin-top: auto; }
+.project-top { display: flex; justify-content: space-between; }
+.number {
+  background: #DCE8F5;
+  color: var(--primary);
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+.tag { font-size: 10px; color: #2E6DA4; font-weight: bold; }
+.tech { font-size: 11px; color: var(--muted); margin: 10px 0; }
+.empty { display: none; color: var(--muted); }
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.skill { font-size: 12px; font-weight: bold; }
+.skill span {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: normal;
+}
+
+.contact {
+  background: var(--primary);
+  color: white;
+  padding: 30px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.contact p { color: #D6E3F1; font-size: 13px; }
+.contact .btn { background: white; color: var(--primary); }
+.footer { text-align: center; padding: 20px; color: var(--muted); font-size: 11px; }
+
+@media(max-width:760px) {
+  .hero-grid { grid-template-columns: 1fr 130px; gap: 18px; }
+  .portrait { width: 125px; height: 125px; }
+  .grid-2 { grid-template-columns: 1fr; }
+  .skills { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width:560px) {
+  .nav { align-items: flex-start; }
+  .navlinks { display: grid; grid-template-columns: repeat(2, auto); gap: 5px 12px; font-size: 11px; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .portrait { grid-row: 1; width: 112px; height: 112px; }
+  .projects { grid-template-columns: 1fr; }
+  .project-toolbar { flex-direction: column; }
+  .contact { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="brand" href="#inicio">GABRIEL OLIVEIRA DALMO</a>
+    <nav class="navlinks">
+      <a href="#sobre">Sobre</a>
+      <a href="#formacao">Formação</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#habilidades">Habilidades</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Portfólio profissional · Tecnologia & Gestão</div>
+      <h1>Gabriel Oliveira<br>Dalmo</h1>
+      <p>Desenvolvimento de sistemas, automação de processos e análise de dados. Construindo soluções práticas e ampliando conhecimentos em tecnologia e administração.</p>
+
+      <div class="actions">
+        <a class="btn primary" href="#projetos">Conheça meus projetos</a>
+        <a class="btn ghost" href="https://github.com/gabi2004-wq" target="_blank">Acessar GitHub ↗️</a>
+      </div>
+
+      <div class="quick">
+        Praia Grande – SP<br>
+        gabrieloliveiradalmo2004@gmail.com<br>
+        (13) 99100-6779
+      </div>
+    </div>
+
+    <img class="portrait" src="imagens/foto.jpg" alt="Foto de Gabriel Oliveira Dalmo">
+  </div>
+</section>
+
+<main class="wrap">
+
+<section class="section" id="sobre">
+  <div class="kicker">Apresentação</div>
+  <h2>Sobre mim</h2>
+  <p class="intro">
+    Profissional com formação em Análise e Desenvolvimento de Sistemas e estudos em Administração. Tenho experiência em operação de loja, atendimento, estoque e logística, além de projetos práticos em desenvolvimento e tecnologia.
+  </p>
+
+  <div class="grid-2">
+    <article class="panel">
+      <h3>Objetivo profissional</h3>
+      <p>Busco uma oportunidade nas áreas de Tecnologia da Informação, Desenvolvimento de Sistemas, suporte, análise de dados ou Administração, onde possa aplicar meus conhecimentos, aprender continuamente e contribuir para os resultados da organização.</p>
+    </article>
+
+    <article class="panel">
+      <h3>Experiência profissional</h3>
+      <div class="timeline-item">
+        <strong>Assistente de Vendas · Kallan Calçados</strong>
+        <small>Operação de loja, atendimento, organização de mercadorias, preços, indicadores e apoio ao estoque.</small>
+      </div>
+      <div class="timeline-item">
+        <strong>Estoque e Logística · Ricardo Hortifruti</strong>
+        <small>Recebimento e conferência de mercadorias, carga e descarga, organização e controle do setor.</small>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="formacao">
+  <div class="kicker">Estudos</div>
+  <h2>Formação acadêmica</h2>
+
+  <div class="grid-2">
+    <article class="panel">
+      <div class="timeline-item">
+        <strong>Análise e Desenvolvimento de Sistemas</strong>
+        <small>Universidade Santo Amaro (UNISA) · Concluído em 2026</small>
+      </div>
+      <div class="timeline-item">
+        <strong>Administração</strong>
+        <small>Universidade Santo Amaro (UNISA) · Em andamento</small>
+      </div>
+      <div class="timeline-item">
+        <strong>Formação de Vigilante</strong>
+        <small>Escola Onze de Agosto · 2025</small>
+      </div>
+    </article>
+
+    <article class="panel">
+      <h3>Áreas de interesse</h3>
+      <p>Desenvolvimento web · APIs e integração de sistemas · Automação de processos · Análise e visualização de dados · Banco de dados · Gestão administrativa</p>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="projetos">
+  <div class="kicker">Portfólio</div>
+  <h2>Projetos desenvolvidos</h2>
+  <p class="intro">Dez projetos práticos que demonstram minha evolução em programação, automação, análise de dados e gestão.</p>
+
+  <div class="project-toolbar">
+    <div class="search">
+      <input id="projectSearch" type="search" placeholder="Pesquisar projeto ou tecnologia...">
+    </div>
+    <div class="filter">
+      <select id="categoryFilter">
+        <option value="">Todas as categorias</option>
+        <option value="dados">Dados</option>
+        <option value="automacao">Automação</option>
+        <option value="api">APIs</option>
+        <option value="web">Sistemas web</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="projects" id="projectGrid">
+
+    <article class="project-card" data-category="dados" data-search="dashboard vendas python pandas streamlit">
+      <div class="project-top"><span class="number">01</span><span class="tag">Análise de dados</span></div>
+      <h3>Dashboard de Vendas com Análise de Dados</h3>
+      <p>Painel para visualização de indicadores e análise de desempenho de vendas.</p>
+      <div class="tech">Python · Pandas · Streamlit · GitHub</div>
+      <a href="https://github.com/gabi2004-wq/dashboard-vendas" target="_blank">Ver repositório ↗️</a>
+    </article>
+
+    <article class="project-card" data-category="automacao" data-search="automação solicitações n8n ia google sheets">
+      <div class="project-top"><span class="number">02</span><span class="tag">Automação</span></div>
+      <h3>Automação Inteligente de Solicitações</h3>
+      <p>Fluxo automatizado para recebimento e classificação de solicitações, com apoio de IA.</p>
+      <div class="tech">n8n · Inteligência Artificial · Google Sheets</div>
+      <a href="https://github.com/gabi2004-wq/automacao-solicitacoes" target="_blank">Ver repositório ↗️</a>
+    </article>
+
+    <article class="project-card" data-category="api" data-search="api gestão solicitações python fastapi">
+      <div class="project-top"><span class="number">03</span><span class="tag">API</span></div>
+      <h3>API de Gestão de Solicitações</h3>
+      <p>API REST para cadastro, consulta e gerenciamento de solicitações.</p>
+      <div class="tech">Python · FastAPI · Swagger</div>
+      <a href="https://github.com/gabi2004-wq/api-solicitacoes" target="_blank">Ver repositório ↗️</a>
+    </article>
+
+    <article class="project-card" data-category="web" data-search="sistema web solicitações html css javascript">
+      <div class="project-top"><span class="number">04</span><span class="tag">Sistema web</span></div>
+      <h3>Sistema Web de Gestão de Solicitações</h3>
+      <p>Aplicação para cadastro, acompanhamento, pesquisa e gerenciamento de registros.</p>
+      <div class="tech">HTML · CSS · JavaScript · LocalStorage</div>
+      <a href="https://github.com/gabi2004-wq/sistema-solicitacoes" target="_blank">Ver repositório ↗️</a>
+    </article>
+
+    <article class="project-card" data-category="web" data-search="controle financeiro receitas despesas saldo">
+      <div class="project-top"><span class="number">05</span><span class="tag">Sistema web</span></div>
+      <h3>Sistema de Controle Financeiro</h3>
+      <p>Registro de receitas e despesas, cálculo de saldo e histórico de movimentações.</p>
+      <div class="tech">HTML · CSS · JavaScript · LocalStorage</div>
+      <a href="https://github.com/gabi2004-wq/controle-financeiro" target="_blank">Ver repositório ↗️</a>
+    </article>
+
+    <article class="project-card" data-category="web" data-search="gestão estoque produtos mercadorias">
+      <div class="project-top"><span class="number">06</span><span class="tag">Sistema web</span></div>
+      <h3>Sistema de Gestão de Estoque</h3>
+      <p>Cadastro de produtos, controle de entradas e saídas e alertas de estoque baixo.</p>
+      <div class="tech">HTML · CSS · JavaScript · LocalStorage</div>
+      <a href="https://github.com/gabi2004-wq/gestao-estoque" target="_blank">Ver repositório ↗️</a>
+    </article>
+
+    <article class="project-card" data-category="web" data-search="gestão clientes cadastro contatos">
+      <div class="project-top"><span class="number">07</span><span class="tag">Sistema web</span></div>
+      <h3>Sistema de Gestão de Clientes</h3>
+      <p>Cadastro, consulta, edição e organização de informações de clientes.</p>
+      <div class="tech">HTML · CSS · JavaScript · LocalStorage</div>
+      <a href="https://github.com/gabi2004-wq" target="_blank">Ver no GitHub ↗️</a>
+    </article>
+
+    <article class="project-card" data-category="dados" data-search="dashboard análise vendas produtos indicadores">
+      <div class="project-top"><span class="number">08</span><span class="tag">Dashboard</span></div>
+      <h3>Dashboard de Análise de Vendas</h3>
+      <p>Painel com indicadores, gráficos, cadastro de produtos e acompanhamento de vendas.</p>
+      <div class="tech">HTML · CSS · JavaScript · LocalStorage</div>
+      <a href="https://github.com/gabi2004-wq" target="_blank">Ver no GitHub ↗️</a>
+    </article>
+
+    <article class="project-card" data-category="web" data-search="gestão funcionários cadastro colaboradores">
+      <div class="project-top"><span class="number">09</span><span class="tag">Sistema web</span></div>
+      <h3>Sistema de Gestão de Funcionários</h3>
+      <p>Cadastro e gerenciamento de colaboradores, pesquisa e indicadores de folha salarial.</p>
+      <div class="tech">HTML · CSS · JavaScript · LocalStorage</div>
+      <a href="https://github.com/gabi2004-wq" target="_blank">Ver no GitHub ↗️</a>
+    </article>
+
+    <article class="project-card" data-category="web" data-search="tarefas produtividade prioridades prazos">
+      <div class="project-top"><span class="number">10</span><span class="tag">Produtividade</span></div>
+      <h3>Sistema de Controle de Tarefas e Produtividade</h3>
+      <p>Cadastro de tarefas, prioridades, prazos, filtros e acompanhamento de status.</p>
+      <div class="tech">HTML · CSS · JavaScript · LocalStorage</div>
+      <a href="https://github.com/gabi2004-wq" target="_blank">Ver no GitHub ↗️</a>
+    </article>
+
+  </div>
+  <p class="empty" id="emptyState">Nenhum projeto encontrado. Tente outro termo.</p>
+</section>
+
+<section class="section" id="habilidades">
+  <div class="kicker">Conhecimentos</div>
+  <h2>Habilidades e tecnologias</h2>
+
+  <div class="skills">
+    <div class="skill">HTML5 e CSS3<span>Estrutura e interfaces web</span></div>
+    <div class="skill">JavaScript<span>Lógica e interatividade</span></div>
+    <div class="skill">Python<span>Programação e análise</span></div>
+    <div class="skill">FastAPI<span>Desenvolvimento de APIs</span></div>
+    <div class="skill">SQL<span>Fundamentos de banco de dados</span></div>
+    <div class="skill">Pandas e Streamlit<span>Análise e visualização de dados</span></div>
+    <div class="skill">n8n e IA<span>Automação de processos</span></div>
+    <div class="skill">Git e GitHub<span>Versionamento e portfólio</span></div>
+    <div class="skill">Pacote Office e Canva<span>Ferramentas de produtividade</span></div>
+    <div class="skill">Comunicação<span>Trabalho em equipe</span></div>
+    <div class="skill">Organização<span>Responsabilidade e planejamento</span></div>
+    <div class="skill">Aprendizado contínuo<span>Desenvolvimento profissional</span></div>
+  </div>
+</section>
+
+<section class="section" id="contato">
+  <div class="contact">
+    <div>
+      <div class="kicker" style="color:#BBD5EF">Vamos conversar</div>
+      <h2>Entre em contato</h2>
+      <p>Estou aberto a oportunidades profissionais e novos desafios.</p>
+    </div>
+    <div class="actions">
+      <a class="btn" href="mailto:gabrieloliveiradalmo2004@gmail.com">Enviar e-mail</a>
+      <a class="btn" href="https://github.com/gabi2004-wq" target="_blank">Meu GitHub ↗️</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  © <span id="year"></span> Gabriel Oliveira Dalmo · Portfólio profissional
+</footer>
+
+<script>
+const searchInput = document.getElementById('projectSearch');
+const categoryFilter = document.getElementById('categoryFilter');
+const cards = [...document.querySelectorAll('.project-card')];
+const emptyState = document.getElementById('emptyState');
+
+function filterProjects() {
+  const term = searchInput.value.toLocaleLowerCase('pt-BR').trim();
+  const category = categoryFilter.value;
+  let visible = 0;
+
+  cards.forEach(card => {
+    const matchesText =
+      card.dataset.search.includes(term) ||
+      card.innerText.toLocaleLowerCase('pt-BR').includes(term);
+
+    const matchesCategory =
+      !category || card.dataset.category === category;
+
+    const show = matchesText && matchesCategory;
+    card.style.display = show ? 'flex' : 'none';
+
+    if (show) visible++;
+  });
+
+  emptyState.style.display = visible ? 'none' : 'block';
+}
+
+searchInput.addEventListener('input', filterProjects);
+categoryFilter.addEventListener('change', filterProjects);
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
